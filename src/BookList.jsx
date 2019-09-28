@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const BookList = ({loading, error, books}) => {
   if(loading) {
@@ -13,6 +14,7 @@ const BookList = ({loading, error, books}) => {
     {
       books.map(book => (<div className="book-item" key={book.id}>
         <h2 className="title">{book.name}</h2>
+        <Link to={`/books/${book.id}`}>View Details</Link>
       </div>))
     }
   </div>;
