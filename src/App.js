@@ -1,8 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import {Route, Switch} from 'react-router-dom';
-import BookListContainer from "./BookListContainer";
-import BookDetailContainer from "./BookDetailsContainer";
+import BookListContainer from "./BookList/BookListContainer";
+import BookDetailContainer from "./BookDetail/BookDetailsContainer";
 
 const App = () => {
   return (

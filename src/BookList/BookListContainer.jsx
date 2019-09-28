@@ -1,4 +1,4 @@
-import {useRemoteService} from "./hooks";
+import {useRemoteService} from "../hooks";
 import React from "react";
 import BookList from "./BookList";
 
