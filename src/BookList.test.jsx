@@ -3,6 +3,14 @@ import {render} from '@testing-library/react'
 
 import BookList from './BookList';
 
+import {MemoryRouter as Router} from 'react-router-dom';
+
+const renderWithRouter = (component) => {
+  return {...render(<Router>
+      {component}
+    </Router>)}
+};
+
 describe('BookList', () => {
   it('loading', () => {
     const props = {
@@ -29,7 +37,7 @@ describe('BookList', () => {
         {"name": "Domain-driven design", "id": 2},
       ]
     };
-    const {container} = render(<BookList {...props} />);
+    const {container} = renderWithRouter(<BookList {...props} />);
     const titles = [...container.querySelectorAll('h2')].map(x => x.innerHTML);
     expect(titles).toEqual(['Refactoring', 'Domain-driven design']);
   })
