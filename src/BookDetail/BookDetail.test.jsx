@@ -3,7 +3,15 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 
 import BookDetail from './BookDetail';
-import {prettyDOM} from "@testing-library/dom";
+
+import store from '../store';
+import {Provider} from "react-redux";
+
+const renderWithProvider = (component) => {
+  return {...render(<Provider store={store}>
+        {component}
+    </Provider>)}
+};
 
 describe('BookDetail', () => {
   it('renders title', () => {
@@ -13,7 +21,7 @@ describe('BookDetail', () => {
       }
     };
 
-    const {container} = render(<BookDetail {...props} />);
+    const {container} = renderWithProvider(<BookDetail {...props} />);
 
     const title = container.querySelector('.book-title');
     expect(title.innerHTML).toEqual(props.book.name);
@@ -27,7 +35,7 @@ describe('BookDetail', () => {
       }
     };
 
-    const {container} = render(<BookDetail {...props} />);
+    const {container} = renderWithProvider(<BookDetail {...props} />);
 
     const title = container.querySelector('p.book-description');
     expect(title.innerHTML).toEqual(props.book.description);
@@ -44,7 +52,7 @@ describe('BookDetail', () => {
       }
     };
 
-    const {container} = render(<BookDetail {...props} />);
+    const {container} = renderWithProvider(<BookDetail {...props} />);
 
     const reviews = container.querySelectorAll('[data-test="reviews-container"] .review');
     expect(reviews.length).toBe(1);
@@ -59,7 +67,7 @@ describe('BookDetail', () => {
       }
     };
 
-    const {container} = render(<BookDetail {...props} />);
+    const {container} = renderWithProvider(<BookDetail {...props} />);
 
     const form = container.querySelector('form');
     const nameInput = container.querySelector('input[name="name"]');
