@@ -3,7 +3,6 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 
 import ReviewList from './ReviewList';
-import {prettyDOM} from "@testing-library/dom";
 
 describe('ReviewList', () => {
   it('renders empty list', () => {

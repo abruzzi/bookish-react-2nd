@@ -1,7 +1,9 @@
 import React from 'react'
 import {render} from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect';
 
 import BookDetail from './BookDetail';
+import {prettyDOM} from "@testing-library/dom";
 
 describe('BookDetail', () => {
   it('renders title', () => {
@@ -49,4 +51,24 @@ describe('BookDetail', () => {
     expect(reviews[0].innerHTML).toEqual('Juntao');
   });
 
+  it('renders review form', () => {
+    const props = {
+      book: {
+        name: 'Refactoring',
+        description: 'Martin Fowler’s Refactoring defined core ideas and techniques that hundreds of thousands of developers have used to improve their software.'
+      }
+    };
+
+    const {container} = render(<BookDetail {...props} />);
+
+    const form = container.querySelector('form');
+    const nameInput = container.querySelector('input[name="name"]');
+    const contentTextArea = container.querySelector('textarea[name="content"]');
+    const submitButton = container.querySelector('button[name="submit"]');
+
+    expect(form).toBeInTheDocument();
+    expect(nameInput).toBeInTheDocument();
+    expect(contentTextArea).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
+  });
 });
