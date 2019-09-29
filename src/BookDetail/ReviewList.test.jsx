@@ -24,7 +24,6 @@ describe('ReviewList', () => {
       ]
     };
 
-
     const {container} = render(<ReviewList {...props}/>);
     const reviews = container.querySelectorAll('[data-test="reviews-container"] .review');
 
