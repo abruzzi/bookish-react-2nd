@@ -10,7 +10,7 @@ import * as actions from '../redux/actions/actions';
 const bookListSelector = createSelector([
   state => state.books,
   state => state.loading,
-  state => state.error,
+  state => state.errors['FETCH_BOOKS'],
 ], (books, loading, error) => ({books, loading, error}));
 
 const BookListContainer = () => {

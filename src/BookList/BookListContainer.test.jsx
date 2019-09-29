@@ -20,13 +20,8 @@ const renderWithProvider = (component) => {
 };
 
 describe('BookListContainer', () => {
-  const mock = new MockAdapter(axios);
-
-  afterEach(() => {
-    mock.resetHistory();
-  });
-
   it('renders', async () => {
+    const mock = new MockAdapter(axios);
     mock.onGet('http://localhost:8080/books?q=').reply(200, [
       {"name": "Refactoring", "id": 1},
       {"name": "Acceptance tests driven development with React", "id": 2},
@@ -39,6 +34,16 @@ describe('BookListContainer', () => {
 
     expect(book1).toBeInTheDocument();
     expect(book2).toBeInTheDocument();
+  });
+
+  it('something went wrong', async () => {
+    const mock = new MockAdapter(axios);
+    mock.onGet('http://localhost:8080/books?q=').networkError();
+
+    const {findByText} = renderWithProvider(<BookListContainer/>);
+    const error = await findByText('Error...');
+
+    expect(error).toBeInTheDocument();
   })
 });
 
