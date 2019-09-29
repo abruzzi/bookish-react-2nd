@@ -30,6 +30,8 @@ describe('ReviewList', () => {
 
     expect(reviews.length).toBe(2);
 
-    expect(reviews[0].innerHTML).toEqual('Juntao');
+    expect(reviews[0].querySelector('.name').innerHTML).toEqual('Juntao');
+    expect(reviews[0].querySelector('.date').innerHTML).toEqual('2018/06/21');
+    expect(reviews[0].querySelector('.content').innerHTML).toEqual('Excellent work, really impressive on the efforts you put');
   })
 });
