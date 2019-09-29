@@ -3,6 +3,7 @@ import axios from "axios";
 export const cleanUpStubBooks = () => {
   return axios.delete('http://localhost:8080/books?_cleanup=true').catch(err => err)
 };
+
 export const feedStubBooks = () => {
   const books = [
     {"name": "Refactoring", "id": 1},
@@ -12,9 +13,11 @@ export const feedStubBooks = () => {
 
   return books.map(item => axios.post('http://localhost:8080/books', item, {headers: {'Content-Type': 'application/json'}}))
 };
+
 export const gotoApp = () => {
   cy.visit('http://localhost:3000/');
 }
+
 export const checkAppTitle = () => {
   cy.get('h2[data-test="heading"]').contains('Bookish');
 }
