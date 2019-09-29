@@ -1,7 +1,12 @@
 import React from 'react';
 
-const ReviewList = () => {
-  return (<div data-test="reviews-container"></div>)
+const ReviewList = ({reviews}) => {
+  return (<div data-test="reviews-container">
+    {
+      reviews.map((review, index) =>
+      <div key={index} className="review">{review.name}</div>)
+    }
+  </div>)
 };
 
 export default ReviewList;
