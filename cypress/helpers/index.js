@@ -44,3 +44,13 @@ export const checkBookDetail = () => {
 export const performSearch = (term) => {
   cy.get('[data-test="search"] input').type(term);
 }
+
+export const composeReview = (name, content) => {
+  cy.get('input[name="name"]').type(name);
+  cy.get('textarea[name="content"]').type(content);
+  cy.get('button[name="submit"]').click();
+};
+
+export const checkReview = () => {
+  cy.get('div[data-test="reviews-container"] .review').should('have.length', 1);
+}

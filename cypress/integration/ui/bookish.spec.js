@@ -2,7 +2,9 @@ import {
   checkAppTitle,
   checkBookDetail,
   checkBookListWith,
+  checkReview,
   cleanUpStubBooks,
+  composeReview,
   feedStubBooks,
   gotoApp,
   gotoNthBookInTheList,
@@ -41,12 +43,8 @@ describe('Bookish application', () => {
   it('Write a review for a book', () => {
     gotoNthBookInTheList(0);
     checkBookDetail();
-
-    cy.get('input[name="name"]').type('Juntao Qiu');
-    cy.get('textarea[name="content"]').type('Excellent works!');
-    cy.get('button[name="submit"]').click();
-
-    cy.get('div[data-test="reviews-container"] .review').should('have.length', 1);
+    composeReview('Juntao Qiu', 'Excellent works!');
+    checkReview();
   });
 
 });
