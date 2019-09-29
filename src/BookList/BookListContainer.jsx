@@ -1,7 +1,7 @@
 import {useRemoteService} from "../hooks";
 import React, {Fragment, useEffect, useState} from "react";
 import BookList from "./BookList";
-import TextField from "@material-ui/core/TextField/TextField";
+import SearchBox from "./SearchBox";
 
 const BookListContainer = () => {
   const [term, setTerm] = useState('');
@@ -11,15 +11,10 @@ const BookListContainer = () => {
     setUrl(`http://localhost:8080/books?q=${term}`)
   }, [term]);
 
+  const onSearch = (event) => setTerm(event.target.value);
+
   return (<Fragment>
-    <TextField
-      label="Search"
-      value={term}
-      data-test="search"
-      onChange={(e) => setTerm(e.target.value)}
-      margin="normal"
-      variant="outlined"
-    />
+    <SearchBox term={term} onSearch={onSearch}/>
     <BookList books={data} loading={loading} error={error}/>
   </Fragment>);
 }
