@@ -3,7 +3,16 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import Review from "./Review";
 import userEvent from "@testing-library/user-event";
-import {prettyDOM} from "@testing-library/dom";
+
+import * as actions from '../redux/actions/actions';
+import store from "../store";
+import {Provider} from "react-redux";
+
+const renderWithProvider = (component) => {
+  return {...render(<Provider store={store}>
+      {component}
+    </Provider>)}
+};
 
 describe('Review', () => {
   it('renders', () => {
@@ -15,7 +24,7 @@ describe('Review', () => {
       },
     };
 
-    const {container} = render(<Review {...props}/>);
+    const {container} = renderWithProvider(<Review {...props}/>);
     const review = container.querySelector('.review');
 
 
@@ -34,7 +43,7 @@ describe('Review', () => {
       },
     };
 
-    const {getByText} = render(<Review {...props}/>);
+    const {getByText} = renderWithProvider(<Review {...props}/>);
     const button = getByText('Edit');
 
     expect(button.innerHTML).toEqual('Edit');
@@ -53,10 +62,9 @@ describe('Review', () => {
       },
     };
 
-    const {getByText, container} = render(<Review {...props}/>);
+    const {getByText, container} = renderWithProvider(<Review {...props}/>);
     const button = getByText('Edit');
     const content = container.querySelector('p.content');
-    const editingContent = container.querySelector('textarea[name="content"]');
 
     expect(content).toBeInTheDocument();
     expect(container.querySelector('textarea[name="content"]')).not.toBeInTheDocument();
@@ -68,5 +76,35 @@ describe('Review', () => {
     expect(container.querySelector('textarea[name="content"]')).toBeInTheDocument();
     expect(container.querySelector('textarea[name="content"]').innerHTML)
       .toEqual('Excellent work, really impressive on the efforts you put');
+  });
+
+  it('send requests', async () => {
+    const fakeSaveReview = () => {
+      return () => {
+        return Promise.resolve({})
+      }
+    };
+
+    jest.spyOn(actions, 'saveReview').mockImplementation(() => fakeSaveReview);
+
+    const props = {
+      bookId: 123,
+      review: {
+        name: 'Juntao',
+        date: '2018/06/21',
+        content: 'Excellent work, really impressive on the efforts you put'
+      },
+    };
+
+    const {getByText, container} = renderWithProvider(<Review {...props}/>);
+
+    userEvent.click(getByText('Edit'));
+
+    const content = container.querySelector('textarea[name="content"]');
+    userEvent.type(content, 'Fantastic work');
+
+    userEvent.click(getByText('Submit'));
+
+    expect(actions.saveReview).toHaveBeenCalledWith(props.bookId, {content: 'Fantastic work'});
   });
 });

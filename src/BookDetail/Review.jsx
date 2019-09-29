@@ -1,10 +1,23 @@
 import React, {useState} from "react";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
+import {useDispatch} from "react-redux";
 
-const Review = ({review}) => {
+import * as actions from '../redux/actions/actions';
+
+const Review = ({bookId, review}) => {
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(review.content);
+
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    if(editing) {
+      dispatch(actions.saveReview(bookId, {content}))
+    }
+
+    setEditing(!editing);
+  };
 
   return (<div className="review">
 
@@ -23,7 +36,7 @@ const Review = ({review}) => {
     />)}
 
 
-    <Button variant="contained" color="primary" name="submit" onClick={() => setEditing(!editing)}>
+    <Button variant="contained" color="primary" name="submit" onClick={clickHandler}>
       {!editing ? "Edit" : "Submit"}
     </Button>
   </div>)

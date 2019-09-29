@@ -3,6 +3,14 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 
 import ReviewList from './ReviewList';
+import store from "../store";
+import {Provider} from "react-redux";
+
+const renderWithProvider = (component) => {
+  return {...render(<Provider store={store}>
+      {component}
+    </Provider>)}
+};
 
 describe('ReviewList', () => {
   it('renders empty list', () => {
@@ -10,7 +18,7 @@ describe('ReviewList', () => {
       reviews: []
     };
 
-    const {container} = render(<ReviewList {...props}/>);
+    const {container} = renderWithProvider(<ReviewList {...props}/>);
     const reviews = container.querySelector('[data-test="reviews-container"]');
 
     expect(reviews).toBeInTheDocument();
@@ -24,7 +32,7 @@ describe('ReviewList', () => {
       ]
     };
 
-    const {container} = render(<ReviewList {...props}/>);
+    const {container} = renderWithProvider(<ReviewList {...props}/>);
     const reviews = container.querySelectorAll('[data-test="reviews-container"] .review');
 
     expect(reviews.length).toBe(2);

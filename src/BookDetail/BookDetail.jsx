@@ -9,7 +9,7 @@ const BookDetail = ({book}) => {
 
     <ReviewForm id={book.id} />
 
-    {book.reviews && <ReviewList reviews={book.reviews}/>}
+    {book.reviews && <ReviewList bookId={book.id} reviews={book.reviews}/>}
   </div>)
 }
 
