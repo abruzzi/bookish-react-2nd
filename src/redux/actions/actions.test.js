@@ -30,7 +30,7 @@ describe('BookListContainer related actions', () => {
       })
     })
 
-    it('Search data with term in state', () => {
+    it('Search data with term', () => {
       const books = [
         {id: 1, name: 'Refactoring'},
         {id: 2, name: 'Domain-driven design'}

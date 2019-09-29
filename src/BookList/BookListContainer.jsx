@@ -22,9 +22,9 @@ const BookListContainer = () => {
     dispatch(actions.fetchBooks(term))
   }, [term]);
 
-  const onSearch = (event) => setTerm(event.target.value);
-
   const {books, loading, error} = useSelector(bookListSelector);
+
+  const onSearch = (event) => setTerm(event.target.value);
 
   return (<Fragment>
     <SearchBox term={term} onSearch={onSearch}/>
