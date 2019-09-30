@@ -34,7 +34,7 @@ export const checkBookListWith = (expectation = []) => {
 
 export const gotoNthBookInTheList = (nth) => {
   cy.get('div.book-item').contains('View Details').eq(nth).click();
-  cy.url().should('include', `/books/${nth + 1}`);
+  // cy.url().should('include', `/books/${nth + 1}`);
 }
 
 export const checkBookDetail = () => {
