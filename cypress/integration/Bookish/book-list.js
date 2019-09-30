@@ -1,23 +1,12 @@
-import {
-  checkAppTitle,
-  checkBookDetail,
-  checkBookListWith,
-  checkReview,
-  cleanUpStubBooks,
-  composeReview,
-  feedStubBooks,
-  gotoApp,
-  gotoNthBookInTheList,
-  performSearch
-} from "../../helpers";
+import {checkBookListWith} from "../../helpers";
 
-import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
+import {And, Then} from "cypress-cucumber-preprocessor/steps";
 
 Then(`I can see {int} books`, (number) => {
   //
 });
 
-And(`there are`, table => {
+And(`there are a book list`, table => {
   const actual = table.rows().map(x => x[0]);
   checkBookListWith(actual);
 });

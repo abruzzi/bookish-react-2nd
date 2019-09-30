@@ -11,7 +11,7 @@ Feature: Book List
   Scenario: Book List
     Given I am a bookish user
     When I open the list page
-    And there are
+    And there are a book list
       | name                   |
       | Refactoring            |
       | Domain-driven design   |
