@@ -9,6 +9,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/Expan
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel/ExpansionPanel";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Grid from "@material-ui/core/Grid/Grid";
 
 const Review = ({review}) => {
   const [editing, setEditing] = useState(false);
@@ -35,25 +36,30 @@ const Review = ({review}) => {
         <Typography className="date">{review.date}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        {!editing ?
-          (<Typography className="content">
-            {review.content}
-          </Typography>) :
-          (<TextField
-            fullWidth
-            name="content"
-            label="Content"
-            margin="normal"
-            variant="outlined"
-            multiline
-            rowsMax="4"
-            value={content}
-            onChange={e => setContent(e.target.value)}
-          />)}
-
-        <Button variant="contained" color="primary" name="submit" onClick={clickHandler}>
-          {!editing ? "Edit" : "Submit"}
-        </Button>
+        <Grid container>
+          <Grid item xs={12}>
+            {!editing ?
+              (<Typography className="content">
+                {review.content}
+              </Typography>) :
+              (<TextField
+                fullWidth
+                name="content"
+                label="Content"
+                margin="normal"
+                variant="outlined"
+                multiline
+                rowsMax="4"
+                value={content}
+                onChange={e => setContent(e.target.value)}
+              />)}
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant="contained" color="primary" name="submit" onClick={clickHandler}>
+              {!editing ? "Edit" : "Submit"}
+            </Button>
+          </Grid>
+        </Grid>
       </ExpansionPanelDetails>
     </ExpansionPanel>
 

@@ -4,8 +4,17 @@ import Button from "@material-ui/core/Button/Button";
 import * as actions from "../redux/actions/actions";
 import {useDispatch} from "react-redux";
 import Grid from "@material-ui/core/Grid/Grid";
+import {makeStyles} from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    margin: '1rem 0',
+  }
+}));
+
 
 const ReviewForm = ({bookId}) => {
+  const classes = useStyles()
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
 
@@ -15,7 +24,7 @@ const ReviewForm = ({bookId}) => {
     dispatch(actions.saveReview(bookId, {bookId, name, content}))
   }
 
-  return (<form noValidate autoComplete="off">
+  return (<form noValidate autoComplete="off" className={classes.root}>
     <Grid container>
       <Grid item xs={12}>
         <TextField
