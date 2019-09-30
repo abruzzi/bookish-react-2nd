@@ -12,6 +12,7 @@ const SearchBox = ({term, onSearch}) => {
   }
 
   return (<TextField
+    fullWidth
     label="Search"
     value={term}
     data-test="search"

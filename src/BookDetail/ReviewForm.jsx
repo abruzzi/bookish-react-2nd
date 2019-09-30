@@ -19,6 +19,7 @@ const ReviewForm = ({bookId}) => {
     <Grid container>
       <Grid item xs={12}>
         <TextField
+          fullWidth
           label="Name"
           name="name"
           margin="normal"
@@ -30,6 +31,7 @@ const ReviewForm = ({bookId}) => {
 
       <Grid item xs={12}>
         <TextField
+          fullWidth
           name="content"
           label="Content"
           margin="normal"

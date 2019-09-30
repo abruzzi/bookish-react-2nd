@@ -38,16 +38,18 @@ const Review = ({review}) => {
         {!editing ?
           (<Typography className="content">
             {review.content}
-            </Typography>) : (<TextField
-          name="content"
-          label="Content"
-          margin="normal"
-          variant="outlined"
-          multiline
-          rowsMax="4"
-          value={content}
-          onChange={e => setContent(e.target.value)}
-        />)}
+          </Typography>) :
+          (<TextField
+            fullWidth
+            name="content"
+            label="Content"
+            margin="normal"
+            variant="outlined"
+            multiline
+            rowsMax="4"
+            value={content}
+            onChange={e => setContent(e.target.value)}
+          />)}
 
         <Button variant="contained" color="primary" name="submit" onClick={clickHandler}>
           {!editing ? "Edit" : "Submit"}
