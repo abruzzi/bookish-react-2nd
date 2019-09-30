@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "cypress run"
+    "e2e": "cypress run --spec **/*.feature"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +47,10 @@
     "@testing-library/user-event": "^7.0.1",
     "axios-mock-adapter": "^1.17.0",
     "cypress": "^3.4.1",
+    "cypress-cucumber-preprocessor": "^1.16.0",
     "redux-mock-store": "^1.5.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }
