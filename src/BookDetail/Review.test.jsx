@@ -105,6 +105,6 @@ describe('Review', () => {
 
     userEvent.click(getByText('Submit'));
 
-    expect(actions.updateReview).toHaveBeenCalledWith(123, {content: 'Fantastic work'});
+    expect(actions.updateReview).toHaveBeenCalledWith(123, {...props.review, content: 'Fantastic work'});
   });
 });
