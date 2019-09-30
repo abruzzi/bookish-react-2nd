@@ -5,15 +5,15 @@ import {useDispatch} from "react-redux";
 
 import * as actions from '../redux/actions/actions';
 
-const Review = ({bookId, review}) => {
+const Review = ({review}) => {
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(review.content);
 
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if(editing) {
-      dispatch(actions.saveReview(bookId, {content}))
+      dispatch(actions.updateReview(Number(review.id), {content}))
     }
 
     setEditing(!editing);

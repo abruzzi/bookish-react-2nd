@@ -1,10 +1,10 @@
 import React from 'react';
 import Review from "./Review";
 
-const ReviewList = ({bookId, reviews = []}) => {
+const ReviewList = ({reviews = []}) => {
   return (<div data-test="reviews-container">
     {
-      reviews.map((review, index) => <Review key={index} review={review} bookId={bookId} />)
+      reviews.map((review, index) => <Review key={index} review={review} />)
     }
   </div>)
 };

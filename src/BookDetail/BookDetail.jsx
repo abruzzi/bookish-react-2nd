@@ -7,9 +7,9 @@ const BookDetail = ({book}) => {
     <h2 className="book-title">{book.name}</h2>
     <p className="book-description">{book.description}</p>
 
-    <ReviewForm id={book.id} />
+    <ReviewForm bookId={book.id} />
 
-    {book.reviews && <ReviewList bookId={book.id} reviews={book.reviews}/>}
+    {book.reviews && <ReviewList reviews={book.reviews}/>}
   </div>)
 }
 

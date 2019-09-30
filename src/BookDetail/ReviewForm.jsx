@@ -5,11 +5,15 @@ import * as actions from "../redux/actions/actions";
 import {useDispatch} from "react-redux";
 import Grid from "@material-ui/core/Grid/Grid";
 
-const ReviewForm = ({id}) => {
+const ReviewForm = ({bookId}) => {
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
 
   const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    dispatch(actions.saveReview(bookId, {bookId, name, content}))
+  }
 
   return (<form noValidate autoComplete="off">
     <Grid container>
@@ -38,7 +42,7 @@ const ReviewForm = ({id}) => {
       </Grid>
 
       <Grid item xs={12}>
-        <Button variant="contained" color="primary" name="submit" onClick={() => dispatch(actions.saveReview(id, {name, content}))}>
+        <Button variant="contained" color="primary" name="submit" onClick={onSubmit}>
           Submit
         </Button>
       </Grid>

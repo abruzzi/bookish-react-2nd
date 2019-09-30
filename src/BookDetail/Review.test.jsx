@@ -79,17 +79,17 @@ describe('Review', () => {
   });
 
   it('send requests', async () => {
-    const fakeSaveReview = () => {
+    const fakeUpdateReview = () => {
       return () => {
         return Promise.resolve({})
       }
     };
 
-    jest.spyOn(actions, 'saveReview').mockImplementation(() => fakeSaveReview);
+    jest.spyOn(actions, 'updateReview').mockImplementation(() => fakeUpdateReview);
 
     const props = {
-      bookId: 123,
       review: {
+        id: 123,
         name: 'Juntao',
         date: '2018/06/21',
         content: 'Excellent work, really impressive on the efforts you put'
@@ -105,6 +105,6 @@ describe('Review', () => {
 
     userEvent.click(getByText('Submit'));
 
-    expect(actions.saveReview).toHaveBeenCalledWith(props.bookId, {content: 'Fantastic work'});
+    expect(actions.updateReview).toHaveBeenCalledWith(123, {content: 'Fantastic work'});
   });
 });
